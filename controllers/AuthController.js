@@ -87,6 +87,8 @@ const login = async (req, res) => {
             data: {
                 userId: userDoc._id,
                 username: userDoc.username,
+                name: userDoc.name,
+                email: userDoc.email,
             }
         })
     } catch(err) {
