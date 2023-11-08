@@ -5,6 +5,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const AuthRoutes = require('./routes/AuthRoutes')
 const AdminRoutes = require('./routes/AdminRoutes')
+const EventRoutes = require('./routes/EventRoutes')
 
 /**
  * APP
@@ -32,7 +33,8 @@ mongoose.connection.on('error', (er) => console.log("DATABASE ERROR :", er))
  */
 app.use('/health', (req, res) => res.send('Event Spark Backend is healthy'))
 app.use('/api/v1/auth', AuthRoutes);
-app.use('/api/v1/admin', AdminRoutes)
+app.use('/api/v1/admin', AdminRoutes);
+app.use('/api/v1/event', EventRoutes);
 
 
 /**
