@@ -43,6 +43,9 @@ const EventSchema = new mongoose.Schema({
         enum: ['ACTIVE', 'COMPLETED', 'CANCELLED'],
         default: 'ACTIVE',
         required: true
+    },
+    tickets: {
+        type: [String], 
     }
 },
 {

@@ -3,9 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const path = require("path")
 const AuthRoutes = require('./routes/AuthRoutes')
 const AdminRoutes = require('./routes/AdminRoutes')
 const EventRoutes = require('./routes/EventRoutes')
+const PaymentRoutes = require('./routes/PaymentRoutes')
 
 /**
  * APP
@@ -15,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:5173', 'https://event-spark-amber.vercel.app']
+    origin: ['http://localhost:5174', 'https://event-spark-amber.vercel.app']
 }))
 
 
@@ -31,10 +33,12 @@ mongoose.connection.on('error', (er) => console.log("DATABASE ERROR :", er))
 /**
  * ROUTES
  */
+app.use('/static', express.static(path.join(__dirname, '/static')))
 app.use('/health', (req, res) => res.send('Event Spark Backend is healthy'))
 app.use('/api/v1/auth', AuthRoutes);
 app.use('/api/v1/admin', AdminRoutes);
 app.use('/api/v1/event', EventRoutes);
+app.use('/api/v1/payment', PaymentRoutes);
 
 
 /**
